@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.46",
     "react": "^18.3.1",

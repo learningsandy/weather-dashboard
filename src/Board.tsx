@@ -41,7 +41,7 @@ function Board() {
     date: "",
     time: "",
   });
-  const apiKey = "134650c9db5db803380beb96a26b7811";
+  const apiKey = import.meta.env.VITE_API_KEY;;
 
   const search = async (city: string) => {
     if (city === "") {
