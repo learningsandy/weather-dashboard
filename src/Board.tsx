@@ -53,6 +53,8 @@ function Board() {
       const response = await fetch(url);
       if (!response.ok) {
         alert("Location not found");
+        console.log(error);
+        
         return;
       }
       const data = await response.json();
