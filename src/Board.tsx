@@ -35,7 +35,7 @@ function Board() {
   });
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [currentDateTime, setCurrentDateTime] = useState({
     day: "",
     date: "",
@@ -53,7 +53,6 @@ function Board() {
       const response = await fetch(url);
       if (!response.ok) {
         alert("Location not found");
-        console.log(error);
         
         return;
       }
