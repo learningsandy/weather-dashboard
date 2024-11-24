@@ -3,6 +3,24 @@ import { useEffect, useRef, useState } from "react";
 import { ImLocation } from "react-icons/im";
 import moment from "moment-timezone";
 
+// Import SVGs
+import ThunderstormsRain from '../src/assets/thunderstorms-rain.svg';
+import Thunderstorms from '../src/assets/thunderstorms.svg';
+import Drizzle from '../src/assets/drizzle.svg';
+import Rain from '../src/assets/rain.svg';
+import Sleet from '../src/assets/sleet.svg';
+import Snow from '../src/assets/snow.svg';
+import Mist from '../src/assets/mist.svg';
+import Smoke from '../src/assets/smoke.svg';
+import Haze from '../src/assets/haze.svg';
+import Dust from '../src/assets/dust.svg';
+import Fog from '../src/assets/fog.svg';
+import Wind from '../src/assets/wind.svg';
+import Tornado from '../src/assets/tornado.svg';
+import Overcast from '../src/assets/overcast.svg';
+import ClearDay from '../src/assets/clear-day.svg';
+import PartlyCloudyDay from '../src/assets/partly-cloudy-day.svg';
+
 function Board() {
   type WeatherData = {
     location: string;
@@ -41,7 +59,7 @@ function Board() {
     date: "",
     time: "",
   });
-  const apiKey = import.meta.env.VITE_API_ID;;
+  const apiKey = import.meta.env.VITE_API_ID;
 
   const search = async (city: string) => {
     if (city === "") {
@@ -122,7 +140,7 @@ function Board() {
 
   const weatherIconMap = (description: string) => {
     const map: { [key: string]: string[] } = {
-      "url(../src/assets/thunderstorms-rain.svg)": [
+      [ThunderstormsRain]: [
         "thunderstorm with light rain",
         "thunderstorm with rain",
         "thunderstorm with heavy rain",
@@ -130,13 +148,13 @@ function Board() {
         "thunderstorm with drizzle",
         "thunderstorm with heavy drizzle",
       ],
-      "url(../src/assets/thunderstorms.svg)": [
+      [Thunderstorms]: [
         "light thunderstorm",
         "thunderstorm",
         "heavy thunderstorm",
         "ragged thunderstorm",
       ],
-      "url(../src/assets/drizzle.svg)": [
+      [Drizzle]: [
         "light intensity drizzle",
         "drizzle",
         "heavy intensity drizzle",
@@ -147,7 +165,7 @@ function Board() {
         "heavy shower rain and drizzle",
         "shower drizzle",
       ],
-      "url(../src/assets/rain.svg)": [
+      [Rain]: [
         "light rain",
         "moderate rain",
         "heavy intensity rain",
@@ -159,14 +177,14 @@ function Board() {
         "heavy intensity shower rain",
         "ragged shower rain",
       ],
-      "url(../src/assets/sleet.svg)": [
+      [Sleet]: [
         "sleet",
         "light shower sleet",
         "shower sleet",
         "light rain and snow",
         "rain and snow",
       ],
-      "url(../src/assets/snow.svg)": [
+      [Snow]: [
         "light snow",
         "snow",
         "heavy snow",
@@ -174,16 +192,16 @@ function Board() {
         "shower snow",
         "heavy shower snow",
       ],
-      "url(../src/assets/mist.svg)": ["mist"],
-      "url(../src/assets/smoke.svg)": ["smoke"],
-      "url(../src/assets/haze.svg)": ["haze"],
-      "url(../src/assets/dust.svg)": ["sand/dust whirls", "sand", "dust"],
-      "url(../src/assets/fog.svg)": ["fog"],
-      "url(../src/assets/wind.svg)": ["squalls"],
-      "url(../src/assets/tornado.svg)": ["tornado"],
-      "url(../src/assets/overcast.svg)": ["overcast clouds"],
-      "url(../src/assets/clear-day.svg)": ["clear sky"],
-      "url(../src/assets/partly-cloudy-day.svg)": [
+      [Mist]: ["mist"],
+      [Smoke]: ["smoke"],
+      [Haze]: ["haze"],
+      [Dust]: ["sand/dust whirls", "sand", "dust"],
+      [Fog]: ["fog"],
+      [Wind]: ["squalls"],
+      [Tornado]: ["tornado"],
+      [Overcast]: ["overcast clouds"],
+      [ClearDay]: ["clear sky"],
+      [PartlyCloudyDay]: [
         "few clouds",
         "scattered clouds",
         "broken clouds",
@@ -191,89 +209,85 @@ function Board() {
     };
     for (const [icon, descriptions] of Object.entries(map)) {
       if (descriptions.includes(description)) {
-        return icon;
+        return `url(${icon})`;
       }
     }
-    return "url(../src/assets/clear-day.svg)";
+    return `url(${ClearDay})`;
   };
 
   const iconUrl = weatherIconMap(weatherData.description);
 
   return (
-    <>
-      <div className="boardin">
-        <div
-          className="details-left"
-          style={{
-            backgroundImage: iconUrl,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            margin: "20px",
-            marginTop: "30px",
-          }}
-        >
-          <p>{currentDateTime.day}</p>
-          <p>{currentDateTime.date}</p>
-          <h1>{weatherData.description}</h1>
-          <div className="time">
-            <p>{currentDateTime.time}</p>
-          </div>
-          <div className="weather-image">
-            <h2>{weatherData.temperature}°C</h2>
-            <h4>
-              <ImLocation color="red" /> {weatherData.location}
-            </h4>
-          </div>
+    <div className="boardin">
+      <div
+        className="details-left"
+        style={{
+          backgroundImage: iconUrl,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          margin: "20px",
+          marginTop: "30px",
+        }}
+      >
+        <p>{currentDateTime.day}</p>
+        <p>{currentDateTime.date}</p>
+        <h1>{weatherData.description}</h1>
+        <div className="time">
+          <p>{currentDateTime.time}</p>
         </div>
-        <hr />
-        <div className="search">
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Enter City Name"
-            className="textfield"
-            value={query}
-            onChange={handleInputChange}
-            onKeyUp={handleKeyPress}
-          />
-          <CiSearch
-            className="icon"
-            onClick={handleSubmit}
-          />
-          <div className="details-right">
-            <h2>Weather Details</h2>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Humidity</th>
-                  <td>{weatherData.humidity} %</td>
-                </tr>
-                <tr>
-                  <th>Wind Speed</th>
-                  <td>{weatherData.windSpeed} km/h</td>
-                </tr>
-                <tr>
-                  <th>Sunrise</th>
-                  <td>{formattedSunrise}</td>
-                </tr>
-                <tr>
-                  <th>Sunset</th>
-                  <td>{formattedSunset}</td>
-                </tr>
-                <tr>
-                  <th>Latitude</th>
-                  <td>{weatherData.latitude}</td>
-                </tr>
-                <tr>
-                  <th>Longitude</th>
-                  <td>{weatherData.longitude}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div className="weather-image">
+          <h2>{weatherData.temperature}°C</h2>
+          <h4>
+            <ImLocation color="red" /> {weatherData.location}
+          </h4>
         </div>
       </div>
-    </>
+      <hr />
+      <div className="search">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Enter City Name"
+          className="textfield"
+          value={query}
+          onChange={handleInputChange}
+          onKeyUp={handleKeyPress}
+        />
+        <CiSearch className="icon" onClick={handleSubmit} />
+        <div className="details-right">
+          <h2>Weather Details</h2>
+          <table>
+            <tbody>
+              <tr>
+                <th>Humidity</th>
+                <td>{weatherData.humidity} %</td>
+              </tr>
+              <tr>
+                <th>Wind Speed</th>
+                <td>{weatherData.windSpeed} km/h</td>
+              </tr>
+              <tr>
+                <th>Sunrise</th>
+                <td>{formattedSunrise}</td>
+              </tr>
+              <tr>
+                <th>Sunset</th>
+                <td>{formattedSunset}</td>
+              </tr>
+              <tr>
+                <th>Latitude</th>
+                <td>{weatherData.latitude}</td>
+              </tr>
+              <tr>
+                <th>Longitude</th>
+                <td>{weatherData.longitude}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   );
 }
+
 export default Board;
