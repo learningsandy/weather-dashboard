@@ -4,22 +4,22 @@ import { ImLocation } from "react-icons/im";
 import moment from "moment-timezone";
 
 // Import SVGs
-import ThunderstormsRain from '../public/assets/thunderstorms-rain.svg';
-import Thunderstorms from '../public/assets/thunderstorms.svg';
-import Drizzle from '../public/assets/drizzle.svg';
-import Rain from '../public/assets/rain.svg';
-import Sleet from '../public/assets/sleet.svg';
-import Snow from '../public/assets/snow.svg';
-import Mist from '../public/assets/mist.svg';
-import Smoke from '../public/assets/smoke.svg';
-import Haze from '../public/assets/haze.svg';
-import Dust from '../public/assets/dust.svg';
-import Fog from '../public/assets/fog.svg';
-import Wind from '../public/assets/wind.svg';
-import Tornado from '../public/assets/tornado.svg';
-import Overcast from '../public/assets/overcast.svg';
-import ClearDay from '../public/assets/clear-day.svg';
-import PartlyCloudyDay from '../public/assets/partly-cloudy-day.svg';
+import ThunderstormsRain from '/assets/thunderstorms-rain.svg';
+import Thunderstorms from '/assets/thunderstorms.svg';
+import Drizzle from '/assets/drizzle.svg';
+import Rain from '/assets/rain.svg';
+import Sleet from '/assets/sleet.svg';
+import Snow from '/assets/snow.svg';
+import Mist from '/assets/mist.svg';
+import Smoke from '/assets/smoke.svg';
+import Haze from '/assets/haze.svg';
+import Dust from '/assets/dust.svg';
+import Fog from '/assets/fog.svg';
+import Wind from '/assets/wind.svg';
+import Tornado from '/assets/tornado.svg';
+import Overcast from '/assets/overcast.svg';
+import ClearDay from '/assets/clear-day.svg';
+import PartlyCloudyDay from '/assets/partly-cloudy-day.svg';
 
 function Board() {
   type WeatherData = {
