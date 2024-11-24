@@ -12,4 +12,10 @@ export default defineConfig({
     outDir: 'build'
   },
   plugins: [react()],
+  resolve: {
+    // Optional: Add aliases if needed for easier imports
+    alias: {
+      '@assets': '/src/assets', // Example alias for assets folder
+    },
+  },
 });
